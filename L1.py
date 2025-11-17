@@ -1,4 +1,3 @@
-from collections import *
 import requests
 r = requests.get("https://dfedorov.spb.ru/python3/sport.txt")
 text = r.content.decode('cp1251')
@@ -12,6 +11,8 @@ for i in text.split('\n'):
                     l.append((word.lower()).strip())
         counter += 1;
 l = l[1:]
-c = Counter(l)
-for i in c.most_common(3):
-    print(i[0])
+main_count = {}
+for i in l:
+    main_count[i] = main_count.get(i, 0) + 1
+for i, j in sorted(main_count.items(), key = lambda x: -x[1])[:3]:
+    print(i)
